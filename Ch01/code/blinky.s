@@ -20,4 +20,4 @@ loop:
   xor x4, x4, x2
   sw x4, 12(x1)
 
-  j loop
+  jal x0, loop

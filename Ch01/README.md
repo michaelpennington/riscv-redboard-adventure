@@ -92,7 +92,7 @@ loop
   xor x4, x4, x2
   sw x4, 8(x1)
 
-  j loop
+  jal x0, loop
 ```
 
 Ok, let's try to compile this!
