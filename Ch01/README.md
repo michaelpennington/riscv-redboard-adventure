@@ -48,7 +48,9 @@ So let's fire up our editor, and write some assembly to do this!
 
 Let's break this down a bit:
 
+```as
     lui x0, 0x10012
+```
 
 First, we load 0x10012 into the upper 20 bits of the register x0, effectively
 setting x0 to 0x1001200 (the address of the gpio port).
@@ -57,14 +59,18 @@ Next, we load 0x20 into x2, as 0x20 is 0b00100000, representing the 5th gpio
 port (led port). In addition, we invert this by xoring the value with
 0xFFFFFFFF, storing it in x3 for help in clearing the bit.
 
+```as
     addi x2, x0, 0x20
     xori x3, x2, -1
+```
 
 Finally, we set the led bit for enable output, and clear the led bit for
 enable input:
 
+```as
     sw x2, 8(x1)
     sw x3, 4(x1)
+```
 
 For now, we won't bother doing anything complicated for a delay, and will just
 count down from a high number and waste clock cycles. So we start our loop,
